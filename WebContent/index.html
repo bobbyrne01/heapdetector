@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="Description" content="Application that detects heap dumps found on servers"/>
+		
+		<title>HeapDetector</title>
+		
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+		<script type="text/javascript" src="js/HeapDetector.js"></script>
+	</head>
+
+	<body>
+	
+		<ul>
+			<li id="heapdumps"><div><a id="heapdumpsLink" href="#"><span>Heap dumps</span></a></div></li>
+			<li id="targets"><div><a id="targetsLink" href="#"><span>Targeted servers</span></a></div></li>
+			<li id="issues"><div><a id="issuesLink" href="#"><span>Tool issues</span></a></div></li>
+			<li id="settings"><div><a id="settingsLink" href="#"><span>Settings</span></a></div></li>
+		</ul>
+		
+		<div>
+			<div id="heapdumpsDiv"></div>
+			<div id="targetsDiv"></div>
+			<div id="settingsDiv">
+				Below is a list of currently targeted servers, along with application settings for FileWatcher.<br/>
+	    		Clicking 'Save' will store any updated values found in the textfields.<br/><br/>
+	    				
+	    		<b>Targets textarea maps to .csv file, format:</b><br/>
+	    		hostname,locationOfHeapdumps<br/>
+	    		sever.com,/opt/server/bin<br/>
+	    		<textarea id="HeapDetectorTargets" rows="20" cols="150"></textarea><br/><br/>
+	    		
+				<table>
+					<tr>
+						<td>
+							<label>Recipients of updates: </label>
+						</td>
+						<td>
+							<input id="HeapDetectorRecipients" type="text" value="" size="100"></input>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Schedule how often targets will be scanned: </label>
+						</td>
+						<td>
+							<select id="HeapDetectorSchedule">
+								<option value="1">Every hour</option>
+								<option value="2">Every 2 hours</option>
+								<option value="4">Every 4 hours</option>
+								<option value="8">Every 8 hours</option>
+								<option value="12">Every 12 hours</option>
+							</select> 
+						</td>
+					</tr>
+				</table>
+		
+				<button id="HeapDetectorSave" onclick="HeapDetector_AJAX.updateSettings()">Save</button> (Button disabled until validation is implemented on inputs)
+			</div>
+		</div>
+	</body>
+</html>
